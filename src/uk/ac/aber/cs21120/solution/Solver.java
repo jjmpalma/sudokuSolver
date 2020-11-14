@@ -14,29 +14,35 @@ public class Solver implements ISolver {
     @Override
     public boolean solve() {
 
-        //For each item on the sudoku grid
+        //For each grid cell
         for (int row = 0; row < 9; row++) {
             for (int column = 0; column < 9; column++) {
 
                 //If the cell is empty
-                if (g.get(row, column) == 0) {
+                if (g.get(column, row) == 0) {
 
-                    //Insert digits from 0-9 and check if new layout is valid
+                    //Insert digits from 1-9
                     for (int i = 1; i < 10; i++) {
-                        g.set(row, column, i);
+                        g.set(column, row, i);
+
+                        //If digit inserted valid
                         if (g.isValid()) {
+
+                            //Recursive backtracking
                             if (solve()) {
                                 return true;
                             }
                         }
                     }
-                    //If not a valid digit found, set cell to empty
-                    g.set(row, column, 0);
+                    //If digit not valid, set cell to empty
+                    g.set(column, row, 0);
                     return false;
                 }
             }
         }
 
+        System.out.println("GRID RESULT");
+        System.out.println(g.toString());
         return true;
     }
 }

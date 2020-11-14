@@ -1,26 +1,20 @@
 package uk.ac.aber.cs21120.solution;
 
+import uk.ac.aber.cs21120.interfaces.IGrid;
 import uk.ac.aber.cs21120.tests.Examples;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        long start, timeTaken;
-        int gaps;
+        for(int i = 0; i < 402; i++){
+            Solver solver = new Solver(Examples.getExample(i));
 
-        Examples e = new Examples();
-
-        for(int i = 1; i <= 402; i++){
-            Solver solver = new Solver(e.getExample(i));
-
-            gaps = e.getGapCount(i);
-
-            start = System.currentTimeMillis();
+            long start = System.currentTimeMillis();
             solver.solve();
-            timeTaken = System.currentTimeMillis()-start;
+            long timeTaken = System.currentTimeMillis()-start;
 
-            System.out.println("Puzzle n " + i + " | " + "Gaps " + gaps + " | " + "Time " + timeTaken);
+            System.out.println("Puzzle n " + i + " | " + "Gaps " + Examples.getGapCount(i) + " | " + "Time " + timeTaken);
         }
 
     }

@@ -16,7 +16,7 @@ public class Grid implements IGrid {
     public int get(int x, int y) throws BadCellException {
 
         if ((x >= 0 && x <= 8) && (y >= 0 && y <= 9)) {
-            return grid[x][y];
+            return grid[y][x];
 
         } else {
             throw new BadCellException(x, y);
@@ -28,7 +28,7 @@ public class Grid implements IGrid {
 
         if ((x >= 0 && x <= 8) && (y >= 0 && y <= 8)) {
             if ((val >= 0 && val <= 9)) {
-                grid[x][y] = val;
+                grid[y][x] = val;
 
             } else {
                 throw new BadDigitException(val);
@@ -83,5 +83,17 @@ public class Grid implements IGrid {
         }
 
         return true;
+    }
+
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                b.append(get(x, y));
+                b.append(" | ");
+            }
+            b.append('\n');
+        }
+        return b.toString();
     }
 }
