@@ -5,7 +5,7 @@ import uk.ac.aber.cs21120.interfaces.ISolver;
 
 public class Solver implements ISolver {
 
-    IGrid g;
+    private IGrid g = new Grid();
 
     public Solver(IGrid g) {
         this.g = g;
@@ -41,8 +41,6 @@ public class Solver implements ISolver {
             }
         }
 
-        System.out.println("GRID RESULT");
-        System.out.println(g.toString());
         return true;
     }
 }
